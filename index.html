@@ -674,7 +674,7 @@ const hitSound = new Audio('https://cdn.pixabay.com/audio/2024/10/31/audio_9f88e
       const randomPerson = people[Math.floor(Math.random() * people.length)];
 
       // Add the person mention to the tweet text
-      const finalTweetText = `${tweetText} ${randomPerson}`;
+      const finalTweetText = `${tweetText} .\n${randomPerson} | your turn: https://flappy.sstr.fun`;
 
       return finalTweetText;
     }
