@@ -1,703 +1,739 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Flappy Sister</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
 
-<head>
-  <meta charset="UTF-8">
-  <title>Flappy Sister</title>
-  <style>
-    html,
-    body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background: linear-gradient(to bottom, #ffcce6, #ff99cc);
-      font-family: 'Arial', sans-serif;
-    }
-
-    .social-links {
-      width: 100%;
-      background: #ff66b2;
-      display: flex;
-      justify-content: center;
-      padding: 10px 0;
-      position: absolute;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .social-links a {
-      color: white;
-      text-decoration: none;
-      margin: 0 15px;
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-    }
-
-    .social-links img {
-      width: 25px;
-      height: 25px;
-      margin-right: 8px;
-    }
-
-    /* Style for the footer */
-    .footer-social-links {
-
-      padding: 10px 0;
-
-      width: 100%;
-      background: #ff66b2;
-      display: flex;
-      justify-content: center;
-      position: absolute;
-      bottom: 0;
-      z-index: 1000;
-
-    }
-
-    /* Style for the slogan */
-    .footer-slogan {
-      font-size: 18px;
-      font-weight: bold;
-      /* Or any color you like */
-      margin-bottom: 0px;
-    }
-
-
-    /* Style the images to be smaller */
-    .footer-social-links img {
-      width: 30px;
-      /* Adjust size of the icons */
-      height: 30px;
-      border-radius: 50%;
-      /* Makes the icons round */
-    }
-
-    .footer-social-links a {
-      color: white;
-      text-decoration: none;
-      margin: 0 15px;
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-    }
-
-    #game-container {
-      position: relative;
-      width: 400px;
-      height: 600px;
-      overflow: hidden;
-      background: linear-gradient(to bottom, #e6f3ff, #cce6ff);
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-      border: 3px solid #ff66b2;
-      cursor: pointer;
-    }
-
-    #bird {
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      background-image: url("https://pbs.twimg.com/profile_images/1855335713970987008/qcwhT4K4_400x400.jpg");
-      background-size: cover;
-      left: 50px;
-      top: 300px;
-      transform-origin: center;
-    }
-
-    .pipe {
-      position: absolute;
-      width: 60px;
-      background: linear-gradient(to right, #ff66b2, #ff99cc);
-      border-radius: 10px;
-    }
-
-    .crypto-coin {
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 16px;
-      font-weight: bold;
-    }
-
-    .crypto-btc {
-      background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/300px-Bitcoin.svg.png");
-      background-size: cover;
-      width: 25px;
-      height: 25px;
-      display: inline-block;
-    }
-
-    .crypto-eth {
-      background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Eth-diamond-rainbow.png/240px-Eth-diamond-rainbow.png");
-      background-size: cover;
-      width: 25px;
-      height: 25px;
-      display: inline-block;
-    }
-
-    .crypto-doge {
-      background-image: url("https://upload.wikimedia.org/wikipedia/en/d/d0/Dogecoin_Logo.png");
-      background-size: cover;
-      width: 25px;
-      height: 25px;
-      display: inline-block;
-    }
-
-    .crypto-strk {
-      background-image: url("https://pbs.twimg.com/profile_images/1637128169604915205/01smej1e_400x400.jpg");
-      background-size: cover;
-      width: 25px;
-      height: 25px;
-      display: inline-block;
-    }
-
-    .crypto-brother {
-      background-image: url("https://pbs.twimg.com/profile_images/1855474730570280960/upVkZ8Q2_400x400.jpg");
-      background-size: cover;
-      width: 25px;
-      height: 25px;
-      display: inline-block;
-    }
-
-    .crypto-sch {
-      background-image: url("https://pbs.twimg.com/profile_images/1857461854735355904/4oICaNpQ_400x400.jpg");
-      background-size: cover;
-      width: 25px;
-      height: 25px;
-      display: inline-block;
-    }
-
-    .crypto-SLINKY {
-      background-image: url("https://pbs.twimg.com/profile_images/1847540030065070080/gk7DRIy6_400x400.jpg");
-      background-size: cover;
-      width: 25px;
-      height: 25px;
-      display: inline-block;
-    }
-
-    .crypto-Socks {
-      background-image: url("https://pbs.twimg.com/profile_images/1790975988932698112/11-Df8n6_400x400.jpg");
-      background-size: cover;
-      width: 25px;
-      height: 25px;
-      display: inline-block;
-    }
-
-    .crypto-alf {
-      background-image: url("https://pbs.twimg.com/profile_images/1851696385638244352/W1_Y-6WC_400x400.jpg");
-      background-size: cover;
-      width: 25px;
-      height: 25px;
-      display: inline-block;
-    }
-
-    .crypto-wizardwifhat {
-      background-image: url("https://pbs.twimg.com/profile_images/1844906927832145920/oX9_I7Oc_400x400.jpg");
-      background-size: cover;
-      width: 25px;
-      height: 25px;
-      display: inline-block;
-    }
-
-    .crypto-donkey {
-      background-image: url("https://pbs.twimg.com/profile_images/1850975392942718976/ia5GrLYr_400x400.jpg");
-      background-size: cover;
-      width: 25px;
-      height: 25px;
-      display: inline-block;
-    }
-
-    .crypto-pain {
-      background-image: url("https://pbs.twimg.com/profile_images/1761144682808025088/Ki19VFca_400x400.jpg");
-      background-size: cover;
-      width: 25px;
-      height: 25px;
-      display: inline-block;
-    }
-
-    #score {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 24px;
-      color: #ff66b2;
-      font-weight: bold;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-      z-index: 100;
-    }
-
-    #start-screen,
-    #game-over {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(255, 255, 255, 0.95);
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      border: 3px solid #ff66b2;
-      z-index: 1000;
-    }
-
-    #game-over {
-      display: none;
-    }
-
-    .btn {
-      background: #ff66b2;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 20px;
-      cursor: pointer;
-      margin: 5px;
-      font-size: 16px;
-      transition: all 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .btn:hover {
-      transform: scale(1.1);
-      background: #ff4da6;
-    }
-
-    .btn-x {
-      background: #000;
-      padding: 10px 25px;
-    }
-
-    .btn-x:hover {
-      background: #333;
-    }
-
-    .sparkle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      pointer-events: none;
-      border-radius: 50%;
-      animation: sparkle 1s linear forwards;
-    }
-
-    @keyframes sparkle {
-      0% {
-        transform: scale(0) rotate(0deg);
-        opacity: 1;
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
       }
 
-      100% {
-        transform: scale(1) rotate(180deg);
-        opacity: 0;
-      }
-    }
-
-    @keyframes float {
-
-      0%,
-      100% {
-        transform: translateY(0);
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(to bottom, #ffcce6, #ff99cc);
+        font-family: "Arial", sans-serif;
       }
 
-      50% {
-        transform: translateY(-5px);
+      .social-links {
+        width: 100%;
+        background: #ff66b2;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 10px 0;
+        position: absolute;
+        top: 0;
+        z-index: 1000;
+        gap: 8px;
       }
-    }
 
-    #bird {
-      animation: float 1.5s ease-in-out infinite;
-    }
+      .social-links a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+      }
 
-    h1,
-    h2 {
-      color: #ff66b2;
-      margin: 0 0 20px 0;
-    }
-  </style>
-</head>
+      .social-links img {
+        width: 25px;
+        height: 25px;
+        margin-right: 8px;
+      }
 
-<body>
+      /* Style for the footer */
+      .footer-social-links {
+        padding: 10px 0;
 
-  <div class="social-links">
-    <a href="https://sstr.fun" target="_blank">
-      <img src="sisterlogo.PNG" alt="Tenor Logo">
-      $SSTR
-    </a>
-    <a href="https://x.com/Stark_Sisters" target="_blank">
-      <img src="x.png" alt="Twitter Logo">
-      X
-    </a>
-    <a href="https://t.co/16YLFgyfnX" target="_blank">
-      <img src="telegram.png" alt="Telegram Logo">
-      Telegram
-    </a>
-    <a href="https://dexscreener.com/starknet/0x0102d5e124c51b936ee87302e0f938165aec96fb6c2027ae7f3a5ed46c77573b-0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7-1020847100762815390390123822295304634-5982-0x0"
-      target="_blank">
-      <img src="dexscanner.png" alt="Dexscanner Logo">
-      Dexscanner
-    </a>
-    <a href="https://tenor.com/tr/users/starknetsister" target="_blank">
-      <img src="tenor.png" alt="Tenor Logo">
-      Tenor
-    </a>
-  </div>
+        width: 100%;
+        background: #ff66b2;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+        position: absolute;
+        bottom: 0;
+        z-index: 1000;
+      }
 
-  <div id="game-container">
-    <div id="bird"></div>
-    <div id="score">0</div>
+      /* Style for the slogan */
+      .footer-slogan {
+        font-size: 18px;
+        font-weight: bold;
+        /* Or any color you like */
+        margin-bottom: 0px;
+      }
 
-    <div id="start-screen">
-      <h1>Flappy SSTR</h1>
-      <button class="btn" onclick="startGame()">Start Game</button>
+      /* Style the images to be smaller */
+      .footer-social-links img {
+        width: 30px;
+        /* Adjust size of the icons */
+        height: 30px;
+        border-radius: 50%;
+        /* Makes the icons round */
+      }
+
+      .footer-social-links a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+      }
+
+      #game-container {
+        position: relative;
+        width: 400px;
+        height: 600px;
+        overflow: hidden;
+        background: linear-gradient(to bottom, #e6f3ff, #cce6ff);
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        border: 3px solid #ff66b2;
+        cursor: pointer;
+      }
+
+      #bird {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background-image: url("https://pbs.twimg.com/profile_images/1855335713970987008/qcwhT4K4_400x400.jpg");
+        background-size: cover;
+        left: 50px;
+        top: 300px;
+        transform-origin: center;
+      }
+
+      .pipe {
+        position: absolute;
+        width: 60px;
+        background: linear-gradient(to right, #ff66b2, #ff99cc);
+        border-radius: 10px;
+      }
+
+      .crypto-coin {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      .crypto-btc {
+        background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/300px-Bitcoin.svg.png");
+        background-size: cover;
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+      }
+
+      .crypto-eth {
+        background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Eth-diamond-rainbow.png/240px-Eth-diamond-rainbow.png");
+        background-size: cover;
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+      }
+
+      .crypto-doge {
+        background-image: url("https://upload.wikimedia.org/wikipedia/en/d/d0/Dogecoin_Logo.png");
+        background-size: cover;
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+      }
+
+      .crypto-strk {
+        background-image: url("https://pbs.twimg.com/profile_images/1637128169604915205/01smej1e_400x400.jpg");
+        background-size: cover;
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+      }
+
+      .crypto-brother {
+        background-image: url("https://pbs.twimg.com/profile_images/1855474730570280960/upVkZ8Q2_400x400.jpg");
+        background-size: cover;
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+      }
+
+      .crypto-sch {
+        background-image: url("https://pbs.twimg.com/profile_images/1857461854735355904/4oICaNpQ_400x400.jpg");
+        background-size: cover;
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+      }
+
+      .crypto-SLINKY {
+        background-image: url("https://pbs.twimg.com/profile_images/1847540030065070080/gk7DRIy6_400x400.jpg");
+        background-size: cover;
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+      }
+
+      .crypto-Socks {
+        background-image: url("https://pbs.twimg.com/profile_images/1790975988932698112/11-Df8n6_400x400.jpg");
+        background-size: cover;
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+      }
+
+      .crypto-alf {
+        background-image: url("https://pbs.twimg.com/profile_images/1851696385638244352/W1_Y-6WC_400x400.jpg");
+        background-size: cover;
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+      }
+
+      .crypto-wizardwifhat {
+        background-image: url("https://pbs.twimg.com/profile_images/1844906927832145920/oX9_I7Oc_400x400.jpg");
+        background-size: cover;
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+      }
+
+      .crypto-donkey {
+        background-image: url("https://pbs.twimg.com/profile_images/1850975392942718976/ia5GrLYr_400x400.jpg");
+        background-size: cover;
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+      }
+
+      .crypto-pain {
+        background-image: url("https://pbs.twimg.com/profile_images/1761144682808025088/Ki19VFca_400x400.jpg");
+        background-size: cover;
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+      }
+
+      #score {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 24px;
+        color: #ff66b2;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        z-index: 100;
+      }
+
+      #start-screen,
+      #game-over {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(255, 255, 255, 0.95);
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        border: 3px solid #ff66b2;
+        z-index: 1000;
+      }
+
+      #game-over {
+        display: none;
+      }
+
+      .btn {
+        background: #ff66b2;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        margin: 5px;
+        font-size: 16px;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .btn:hover {
+        transform: scale(1.1);
+        background: #ff4da6;
+      }
+
+      .btn-x {
+        background: #000;
+        padding: 10px 25px;
+      }
+
+      .btn-x:hover {
+        background: #333;
+      }
+
+      .sparkle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        pointer-events: none;
+        border-radius: 50%;
+        animation: sparkle 1s linear forwards;
+      }
+
+      @keyframes sparkle {
+        0% {
+          transform: scale(0) rotate(0deg);
+          opacity: 1;
+        }
+
+        100% {
+          transform: scale(1) rotate(180deg);
+          opacity: 0;
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+
+        50% {
+          transform: translateY(-5px);
+        }
+      }
+
+      #bird {
+        animation: float 1.5s ease-in-out infinite;
+      }
+
+      h1,
+      h2 {
+        color: #ff66b2;
+        margin: 0 0 20px 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="social-links">
+      <a href="https://sstr.fun" target="_blank">
+        <img src="sisterlogo.PNG" alt="Tenor Logo" />
+        $SSTR
+      </a>
+      <a href="https://x.com/Stark_Sisters" target="_blank">
+        <img src="x.png" alt="Twitter Logo" />
+        X
+      </a>
+      <a href="https://t.co/16YLFgyfnX" target="_blank">
+        <img src="telegram.png" alt="Telegram Logo" />
+        Telegram
+      </a>
+      <a
+        href="https://dexscreener.com/starknet/0x0102d5e124c51b936ee87302e0f938165aec96fb6c2027ae7f3a5ed46c77573b-0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7-1020847100762815390390123822295304634-5982-0x0"
+        target="_blank"
+      >
+        <img src="dexscanner.png" alt="Dexscanner Logo" />
+        Dexscanner
+      </a>
+      <a href="https://tenor.com/tr/users/starknetsister" target="_blank">
+        <img src="tenor.png" alt="Tenor Logo" />
+        Tenor
+      </a>
     </div>
 
-    <div id="game-over">
-      <h2>Game Over!</h2>
-      <p>Score: <span id="final-score">0</span></p>
-      <button class="btn" onclick="restartGame()">Play Again</button>
-      <button class="btn btn-x" onclick="shareScore()">
-        <svg class="x-icon" viewBox="0 0 24 24" fill="white">
-          <path
-            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-        </svg>
-        Share Score
-      </button>
+    <div id="game-container">
+      <div id="bird"></div>
+      <div id="score">0</div>
+
+      <div id="start-screen">
+        <h1>Flappy SSTR</h1>
+        <button class="btn" onclick="startGame()">Start Game</button>
+      </div>
+
+      <div id="game-over">
+        <h2>Game Over!</h2>
+        <p>Score: <span id="final-score">0</span></p>
+        <button class="btn" onclick="restartGame()">Play Again</button>
+        <button class="btn btn-x" onclick="shareScore()">
+          <svg class="x-icon" viewBox="0 0 24 24" fill="white">
+            <path
+              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+            />
+          </svg>
+          Share Score
+        </button>
+      </div>
     </div>
 
-
-  </div>
-
-
-
-
-
-  <footer class="footer-social-links">
-
-    <!-- <div class="footer-slogan">
+    <footer class="footer-social-links">
+      <!-- <div class="footer-slogan">
       <p>We Are Family, Stronger Together! 💅</p>
     </div> -->
 
+      <a href="https://x.com/Starknet" target="_blank">
+        <img
+          src="https://pbs.twimg.com/profile_images/1834202903189618688/N4J8emeY_400x400.png"
+        />
+      </a>
 
-    <a href="https://x.com/Starknet" target="_blank">
-      <img src="https://pbs.twimg.com/profile_images/1834202903189618688/N4J8emeY_400x400.png">
-    </a>
+      <a href="https://x.com/Stark_Sisters" target="_blank">
+        <img
+          src="https://pbs.twimg.com/profile_images/1855335713970987008/qcwhT4K4_400x400.jpg"
+        />
+      </a>
+      <a href="https://x.com/StarknetBro" target="_blank">
+        <img
+          src="https://pbs.twimg.com/profile_images/1855474730570280960/upVkZ8Q2_400x400.jpg"
+        />
+      </a>
+      <a href="https://x.com/donkeystark" target="_blank">
+        <img
+          src="https://pbs.twimg.com/profile_images/1850975392942718976/ia5GrLYr_400x400.jpg"
+        />
+      </a>
+      <a href="https://x.com/SlinkyStark" target="_blank">
+        <img
+          src="https://pbs.twimg.com/profile_images/1847540030065070080/gk7DRIy6_400x400.jpg"
+        />
+      </a>
+      <a href="https://x.com/onchainwizards" target="_blank">
+        <img
+          src="https://pbs.twimg.com/profile_images/1844906927832145920/oX9_I7Oc_400x400.jpg"
+        />
+      </a>
 
-    <a href="https://x.com/Stark_Sisters" target="_blank">
-      <img src="https://pbs.twimg.com/profile_images/1855335713970987008/qcwhT4K4_400x400.jpg">
-    </a>
-    <a href="https://x.com/StarknetBro" target="_blank">
-      <img src="https://pbs.twimg.com/profile_images/1855474730570280960/upVkZ8Q2_400x400.jpg">
-    </a>
-    <a href="https://x.com/donkeystark" target="_blank">
-      <img src="https://pbs.twimg.com/profile_images/1850975392942718976/ia5GrLYr_400x400.jpg">
-    </a>
-    <a href="https://x.com/SlinkyStark" target="_blank">
-      <img src="https://pbs.twimg.com/profile_images/1847540030065070080/gk7DRIy6_400x400.jpg">
-    </a>
-    <a href="https://x.com/onchainwizards" target="_blank">
-      <img src="https://pbs.twimg.com/profile_images/1844906927832145920/oX9_I7Oc_400x400.jpg">
-    </a>
+      <a href="https://x.com/ALF_Starknet" target="_blank">
+        <img
+          src="https://pbs.twimg.com/profile_images/1851696385638244352/W1_Y-6WC_400x400.jpg"
+        />
+      </a>
 
-    <a href="https://x.com/ALF_Starknet" target="_blank">
-      <img src="https://pbs.twimg.com/profile_images/1851696385638244352/W1_Y-6WC_400x400.jpg">
-    </a>
+      <a href="https://x.com/SocksStarknet" target="_blank">
+        <img
+          src="https://pbs.twimg.com/profile_images/1790975988932698112/11-Df8n6_400x400.jpg"
+        />
+      </a>
 
-    <a href="https://x.com/SocksStarknet" target="_blank">
-      <img src="https://pbs.twimg.com/profile_images/1790975988932698112/11-Df8n6_400x400.jpg">
-    </a>
+      <a href="https://x.com/schizodio" target="_blank">
+        <img
+          src="https://pbs.twimg.com/profile_images/1857461854735355904/4oICaNpQ_400x400.jpg"
+        />
+      </a>
 
-    <a href="https://x.com/schizodio" target="_blank">
-      <img src="https://pbs.twimg.com/profile_images/1857461854735355904/4oICaNpQ_400x400.jpg">
-    </a>
+      <a href="https://x.com/painaulaitstark" target="_blank">
+        <img
+          src="https://pbs.twimg.com/profile_images/1761144682808025088/Ki19VFca_400x400.jpg"
+        />
+      </a>
+    </footer>
 
-    <a href="https://x.com/painaulaitstark" target="_blank">
-      <img src="https://pbs.twimg.com/profile_images/1761144682808025088/Ki19VFca_400x400.jpg">
-    </a>
-
-  </footer>
-
-  <script>
-
-const hitSound = new Audio('https://cdn.pixabay.com/audio/2024/10/31/audio_9f88ea50ad.mp3');
-
-
-    const gameContainer = document.getElementById('game-container');
-    const bird = document.getElementById('bird');
-    const scoreElement = document.getElementById('score');
-    const gameOverScreen = document.getElementById('game-over');
-    const startScreen = document.getElementById('start-screen');
-    const finalScoreElement = document.getElementById('final-score');
-
-    const cryptoSymbols = [
-      { symbol: '₿', name: 'BTC', class: 'crypto-btc', points: 1 },
-      { symbol: 'Ξ', name: 'ETH', class: 'crypto-eth', points: 2 },
-      { symbol: 'Ð', name: 'DOGE', class: 'crypto-doge', points: 3 },
-      { symbol: 'B', name: 'Brother', class: 'crypto-brother', points: 8 },
-      { symbol: 'S', name: 'STRK', class: 'crypto-strk', points: 4 },
-      { symbol: 'S', name: 'schizodio', class: 'crypto-sch', points: 7 },
-      { symbol: 'S', name: 'SLINKY', class: 'crypto-SLINKY', points: 6 },
-      { symbol: 'S', name: 'Socks', class: 'crypto-Socks', points: 8 },
-      { symbol: 'S', name: 'Alf', class: 'crypto-alf', points: 9 },
-      { symbol: 'S', name: 'wizardwifhat', class: 'crypto-wizardwifhat', points: 9 },
-      { symbol: 'S', name: 'donkey', class: 'crypto-donkey', points: 6 },
-      { symbol: 'S', name: 'crypto-pain', class: 'crypto-pain', points: 6 },
-    ];
-
-    let gameStarted = false;
-    let gameLoop;
-    let score = 0;
-    let birdY = 300;
-    let velocity = 0;
-    let gravity = 0.5;
-    let pipes = [];
-    let coins = [];
-    let difficulty = 1;
-    let lastPipeTime = 0;
-    let pipeInterval = 2000;
-
-    function startGame() {
-      if (gameStarted) return;
-      gameStarted = true;
-      startScreen.style.display = 'none';
-      resetGame();
-      gameLoop = setInterval(updateGame, 20);
-      document.addEventListener('click', jump);
-      document.addEventListener('keydown', (e) => {
-        if (e.code === 'Space') jump();
-      });
-    }
-
-    function resetGame() {
-      birdY = 300;
-      velocity = 0;
-      score = 0;
-      pipes.forEach(pipe => {
-        gameContainer.removeChild(pipe.top);
-        gameContainer.removeChild(pipe.bottom);
-      });
-      coins.forEach(coin => {
-        if (coin.element.parentNode) {
-          gameContainer.removeChild(coin.element);
-        }
-      });
-      pipes = [];
-      coins = [];
-      difficulty = 1;
-      scoreElement.textContent = '0';
-      bird.style.top = birdY + 'px';
-      gameOverScreen.style.display = 'none';
-      lastPipeTime = Date.now();
-    }
-
-    function createSparkles(element) {
-      for (let i = 0; i < 5; i++) {
-        const sparkle = document.createElement('div');
-        sparkle.className = 'sparkle';
-        sparkle.style.left = (element.offsetLeft + Math.random() * 40) + 'px';
-        sparkle.style.top = (element.offsetTop + Math.random() * 40) + 'px';
-        sparkle.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 75%)`;
-        gameContainer.appendChild(sparkle);
-        setTimeout(() => sparkle.remove(), 1000);
-      }
-    }
-
-    function jump() {
-      if (!gameStarted) return;
-      velocity = -8;
-      createSparkles(bird);
-    }
-
-    function createPipe() {
-      const gap = 200 - (difficulty * 10);
-      const pipeTop = document.createElement('div');
-      const pipeBottom = document.createElement('div');
-      const pipeY = Math.random() * (300 - gap) + 100;
-
-      pipeTop.className = 'pipe';
-      pipeBottom.className = 'pipe';
-      pipeTop.style.height = pipeY + 'px';
-      pipeBottom.style.height = (600 - pipeY - gap) + 'px';
-      pipeTop.style.left = '400px';
-      pipeBottom.style.left = '400px';
-      pipeTop.style.top = '0';
-      pipeBottom.style.bottom = '0';
-
-      gameContainer.appendChild(pipeTop);
-      gameContainer.appendChild(pipeBottom);
-      pipes.push({ top: pipeTop, bottom: pipeBottom, passed: false });
-
-      if (Math.random() < 1.1) {  // Increased coin spawn rate
-        const randomCrypto = cryptoSymbols[Math.floor(Math.random() * cryptoSymbols.length)];
-        const coin = document.createElement('div');
-        coin.className = `crypto-coin ${randomCrypto.class}`;
-        coin.style.left = '400px';
-        coin.style.top = (pipeY + gap / 2) + 'px';
-        gameContainer.appendChild(coin);
-        coins.push({ element: coin, collected: false, points: randomCrypto.points });
-      }
-    }
-
-    function updateGame() {
-      if (!gameStarted) return;
-
-      velocity += gravity;
-      birdY += velocity;
-      bird.style.top = birdY + 'px';
-      bird.style.transform = `rotate(${velocity * 3}deg)`;
-
-      const currentTime = Date.now();
-      if (currentTime - lastPipeTime > pipeInterval) {
-        createPipe();
-        lastPipeTime = currentTime;
-      }
-
-      // Update pipes
-      for (let i = pipes.length - 1; i >= 0; i--) {
-        const pipe = pipes[i];
-        const pipeX = parseInt(pipe.top.style.left) - 2;
-        pipe.top.style.left = pipeX + 'px';
-        pipe.bottom.style.left = pipeX + 'px';
-
-        if (checkCollision(pipe)) {
-          gameOver();
-          return;
-        }
-
-        if (!pipe.passed && pipeX < 50) {
-          hitSound.play();
-
-          pipe.passed = true;
-          score++;
-          difficulty = Math.min(5, 1 + Math.floor(score / 10));
-          scoreElement.textContent = score;
-        }
-
-        if (pipeX < -60) {
-          gameContainer.removeChild(pipe.top);
-          gameContainer.removeChild(pipe.bottom);
-          pipes.splice(i, 1);
-        }
-      }
-
-      // Update coins
-      for (let i = coins.length - 1; i >= 0; i--) {
-        const coin = coins[i];
-        const coinX = parseInt(coin.element.style.left) - 2;
-        coin.element.style.left = coinX + 'px';
-
-        if (!coin.collected && checkCoinCollision(coin)) {
-          coin.collected = true;
-          score += coin.points;
-          scoreElement.textContent = score;
-          createSparkles(coin.element);
-          gameContainer.removeChild(coin.element);
-          coins.splice(i, 1);
-        } else if (coinX < -30) {
-          gameContainer.removeChild(coin.element);
-          coins.splice(i, 1);
-        }
-      }
-
-      if (birdY < 0 || birdY > 560) {
-        gameOver();
-      }
-    }
-
-    function checkCollision(pipe) {
-      const birdRect = bird.getBoundingClientRect();
-      const topPipeRect = pipe.top.getBoundingClientRect();
-      const bottomPipeRect = pipe.bottom.getBoundingClientRect();
-
-      return (
-        birdRect.right > topPipeRect.left &&
-        birdRect.left < topPipeRect.right && (
-          birdRect.top < topPipeRect.bottom ||
-          birdRect.bottom > bottomPipeRect.top
-        )
+    <script>
+      const hitSound = new Audio(
+        "https://cdn.pixabay.com/audio/2024/10/31/audio_9f88ea50ad.mp3"
       );
-    }
 
-    function checkCoinCollision(coin) {
-      const birdRect = bird.getBoundingClientRect();
-      const coinRect = coin.element.getBoundingClientRect();
+      const gameContainer = document.getElementById("game-container");
+      const bird = document.getElementById("bird");
+      const scoreElement = document.getElementById("score");
+      const gameOverScreen = document.getElementById("game-over");
+      const startScreen = document.getElementById("start-screen");
+      const finalScoreElement = document.getElementById("final-score");
 
-      return (
-        birdRect.right > coinRect.left &&
-        birdRect.left < coinRect.right &&
-        birdRect.top < coinRect.bottom &&
-        birdRect.bottom > coinRect.top
-      );
-    }
-
-    function gameOver() {
-      gameStarted = false;
-      clearInterval(gameLoop);
-      finalScoreElement.textContent = score;
-      gameOverScreen.style.display = 'block';
-    }
-
-    function restartGame() {
-      resetGame();
-      startGame();
-    }
-
-    function generateTweet(score) {
-      // Define the tweet templates
-      const templates = [
-        `I scored ${score} $SSTR in Flappy Sister! Can you beat my score? 🐦🚀`,
-        `Challenge accepted! I scored ${score} $SSTR in Flappy Sister 🐦🚀 Can you do better?`,
-        `Flappy Sister, level master! I scored ${score} $SSTR 🐦🚀 Can anyone top this?`,
-        `Sister's on fire! ${score} $SSTR! Can you outscore me? 🐦🚀`,
-        `Just hit ${score} $SSTR in Flappy Sister 🐦🚀 Beat that if you can!`
+      const cryptoSymbols = [
+        { symbol: "₿", name: "BTC", class: "crypto-btc", points: 1 },
+        { symbol: "Ξ", name: "ETH", class: "crypto-eth", points: 2 },
+        { symbol: "Ð", name: "DOGE", class: "crypto-doge", points: 3 },
+        { symbol: "B", name: "Brother", class: "crypto-brother", points: 8 },
+        { symbol: "S", name: "STRK", class: "crypto-strk", points: 4 },
+        { symbol: "S", name: "schizodio", class: "crypto-sch", points: 7 },
+        { symbol: "S", name: "SLINKY", class: "crypto-SLINKY", points: 6 },
+        { symbol: "S", name: "Socks", class: "crypto-Socks", points: 8 },
+        { symbol: "S", name: "Alf", class: "crypto-alf", points: 9 },
+        {
+          symbol: "S",
+          name: "wizardwifhat",
+          class: "crypto-wizardwifhat",
+          points: 9,
+        },
+        { symbol: "S", name: "donkey", class: "crypto-donkey", points: 6 },
+        { symbol: "S", name: "crypto-pain", class: "crypto-pain", points: 6 },
       ];
 
-      // List of people to mention
-      const people = ["@StarknetBro", "@odin_free", "@TobbyKitty", "@ALF_Starknet", "@dimahledba"];
+      let gameStarted = false;
+      let gameLoop;
+      let score = 0;
+      let birdY = 300;
+      let velocity = 0;
+      let gravity = 0.5;
+      let pipes = [];
+      let coins = [];
+      let difficulty = 1;
+      let lastPipeTime = 0;
+      let pipeInterval = 2000;
 
-      // Select a random template
-      const tweetText = templates[Math.floor(Math.random() * templates.length)];
+      function startGame() {
+        if (gameStarted) return;
+        gameStarted = true;
+        startScreen.style.display = "none";
+        resetGame();
+        gameLoop = setInterval(updateGame, 20);
+        document.addEventListener("click", jump);
+        document.addEventListener("keydown", (e) => {
+          if (e.code === "Space") jump();
+        });
+      }
 
-      // Select a random person to mention
-      const randomPerson = people[Math.floor(Math.random() * people.length)];
+      function resetGame() {
+        birdY = 300;
+        velocity = 0;
+        score = 0;
+        pipes.forEach((pipe) => {
+          gameContainer.removeChild(pipe.top);
+          gameContainer.removeChild(pipe.bottom);
+        });
+        coins.forEach((coin) => {
+          if (coin.element.parentNode) {
+            gameContainer.removeChild(coin.element);
+          }
+        });
+        pipes = [];
+        coins = [];
+        difficulty = 1;
+        scoreElement.textContent = "0";
+        bird.style.top = birdY + "px";
+        gameOverScreen.style.display = "none";
+        lastPipeTime = Date.now();
+      }
 
-      // Add the person mention to the tweet text
-      const finalTweetText = `${tweetText} .\n${randomPerson} | your turn: https://flappy.sstr.fun`;
+      function createSparkles(element) {
+        for (let i = 0; i < 5; i++) {
+          const sparkle = document.createElement("div");
+          sparkle.className = "sparkle";
+          sparkle.style.left = element.offsetLeft + Math.random() * 40 + "px";
+          sparkle.style.top = element.offsetTop + Math.random() * 40 + "px";
+          sparkle.style.backgroundColor = `hsl(${
+            Math.random() * 360
+          }, 100%, 75%)`;
+          gameContainer.appendChild(sparkle);
+          setTimeout(() => sparkle.remove(), 1000);
+        }
+      }
 
-      return finalTweetText;
-    }
+      function jump() {
+        if (!gameStarted) return;
+        velocity = -8;
+        createSparkles(bird);
+      }
 
-    function shareScore() {
+      function createPipe() {
+        const gap = 200 - difficulty * 10;
+        const pipeTop = document.createElement("div");
+        const pipeBottom = document.createElement("div");
+        const pipeY = Math.random() * (300 - gap) + 100;
 
-      const score = document.getElementById('final-score').textContent;
+        pipeTop.className = "pipe";
+        pipeBottom.className = "pipe";
+        pipeTop.style.height = pipeY + "px";
+        pipeBottom.style.height = 600 - pipeY - gap + "px";
+        pipeTop.style.left = "400px";
+        pipeBottom.style.left = "400px";
+        pipeTop.style.top = "0";
+        pipeBottom.style.bottom = "0";
 
-      // Generate a random tweet using the score
-      const tweetText = generateTweet(score);
+        gameContainer.appendChild(pipeTop);
+        gameContainer.appendChild(pipeBottom);
+        pipes.push({ top: pipeTop, bottom: pipeBottom, passed: false });
 
-      // Create the tweet URL with the generated tweet
-      const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+        if (Math.random() < 1.1) {
+          // Increased coin spawn rate
+          const randomCrypto =
+            cryptoSymbols[Math.floor(Math.random() * cryptoSymbols.length)];
+          const coin = document.createElement("div");
+          coin.className = `crypto-coin ${randomCrypto.class}`;
+          coin.style.left = "400px";
+          coin.style.top = pipeY + gap / 2 + "px";
+          gameContainer.appendChild(coin);
+          coins.push({
+            element: coin,
+            collected: false,
+            points: randomCrypto.points,
+          });
+        }
+      }
 
-      // Open the tweet URL in a new tab
-      window.open(tweetUrl, '_blank');
-    }
+      function updateGame() {
+        if (!gameStarted) return;
 
-    // Example usage: generate tweet for score 123
-    const tweetUrl = generateTweet(123);
-    console.log(tweetUrl);  // Output the URL for the share button
-  </script>
-</body>
+        velocity += gravity;
+        birdY += velocity;
+        bird.style.top = birdY + "px";
+        bird.style.transform = `rotate(${velocity * 3}deg)`;
 
+        const currentTime = Date.now();
+        if (currentTime - lastPipeTime > pipeInterval) {
+          createPipe();
+          lastPipeTime = currentTime;
+        }
+
+        // Update pipes
+        for (let i = pipes.length - 1; i >= 0; i--) {
+          const pipe = pipes[i];
+          const pipeX = parseInt(pipe.top.style.left) - 2;
+          pipe.top.style.left = pipeX + "px";
+          pipe.bottom.style.left = pipeX + "px";
+
+          if (checkCollision(pipe)) {
+            gameOver();
+            return;
+          }
+
+          if (!pipe.passed && pipeX < 50) {
+            hitSound.play();
+
+            pipe.passed = true;
+            score++;
+            difficulty = Math.min(5, 1 + Math.floor(score / 10));
+            scoreElement.textContent = score;
+          }
+
+          if (pipeX < -60) {
+            gameContainer.removeChild(pipe.top);
+            gameContainer.removeChild(pipe.bottom);
+            pipes.splice(i, 1);
+          }
+        }
+
+        // Update coins
+        for (let i = coins.length - 1; i >= 0; i--) {
+          const coin = coins[i];
+          const coinX = parseInt(coin.element.style.left) - 2;
+          coin.element.style.left = coinX + "px";
+
+          if (!coin.collected && checkCoinCollision(coin)) {
+            coin.collected = true;
+            score += coin.points;
+            scoreElement.textContent = score;
+            createSparkles(coin.element);
+            gameContainer.removeChild(coin.element);
+            coins.splice(i, 1);
+          } else if (coinX < -30) {
+            gameContainer.removeChild(coin.element);
+            coins.splice(i, 1);
+          }
+        }
+
+        if (birdY < 0 || birdY > 560) {
+          gameOver();
+        }
+      }
+
+      function checkCollision(pipe) {
+        const birdRect = bird.getBoundingClientRect();
+        const topPipeRect = pipe.top.getBoundingClientRect();
+        const bottomPipeRect = pipe.bottom.getBoundingClientRect();
+
+        return (
+          birdRect.right > topPipeRect.left &&
+          birdRect.left < topPipeRect.right &&
+          (birdRect.top < topPipeRect.bottom ||
+            birdRect.bottom > bottomPipeRect.top)
+        );
+      }
+
+      function checkCoinCollision(coin) {
+        const birdRect = bird.getBoundingClientRect();
+        const coinRect = coin.element.getBoundingClientRect();
+
+        return (
+          birdRect.right > coinRect.left &&
+          birdRect.left < coinRect.right &&
+          birdRect.top < coinRect.bottom &&
+          birdRect.bottom > coinRect.top
+        );
+      }
+
+      function gameOver() {
+        gameStarted = false;
+        clearInterval(gameLoop);
+        finalScoreElement.textContent = score;
+        gameOverScreen.style.display = "block";
+      }
+
+      function restartGame() {
+        resetGame();
+        startGame();
+      }
+
+      function generateTweet(score) {
+        // Define the tweet templates
+        const templates = [
+          `I scored ${score} $SSTR in Flappy Sister! Can you beat my score? 🐦🚀`,
+          `Challenge accepted! I scored ${score} $SSTR in Flappy Sister 🐦🚀 Can you do better?`,
+          `Flappy Sister, level master! I scored ${score} $SSTR 🐦🚀 Can anyone top this?`,
+          `Sister's on fire! ${score} $SSTR! Can you outscore me? 🐦🚀`,
+          `Just hit ${score} $SSTR in Flappy Sister 🐦🚀 Beat that if you can!`,
+        ];
+
+        // List of people to mention
+        const people = [
+          "@StarknetBro",
+          "@odin_free",
+          "@TobbyKitty",
+          "@ALF_Starknet",
+          "@dimahledba",
+        ];
+
+        // Select a random template
+        const tweetText =
+          templates[Math.floor(Math.random() * templates.length)];
+
+        // Select a random person to mention
+        const randomPerson = people[Math.floor(Math.random() * people.length)];
+
+        // Add the person mention to the tweet text
+        const finalTweetText = `${tweetText} .\n${randomPerson} | your turn: https://flappy.sstr.fun`;
+
+        return finalTweetText;
+      }
+
+      function shareScore() {
+        const score = document.getElementById("final-score").textContent;
+
+        // Generate a random tweet using the score
+        const tweetText = generateTweet(score);
+
+        // Create the tweet URL with the generated tweet
+        const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+          tweetText
+        )}`;
+
+        // Open the tweet URL in a new tab
+        window.open(tweetUrl, "_blank");
+      }
+
+      // Example usage: generate tweet for score 123
+      const tweetUrl = generateTweet(123);
+      console.log(tweetUrl); // Output the URL for the share button
+    </script>
+  </body>
 </html>
