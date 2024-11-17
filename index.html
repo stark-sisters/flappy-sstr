@@ -416,6 +416,10 @@
   </footer>
 
   <script>
+
+const hitSound = new Audio('https://cdn.pixabay.com/audio/2024/10/31/audio_9f88ea50ad.mp3');
+
+
     const gameContainer = document.getElementById('game-container');
     const bird = document.getElementById('bird');
     const scoreElement = document.getElementById('score');
@@ -558,6 +562,8 @@
         }
 
         if (!pipe.passed && pipeX < 50) {
+          hitSound.play();
+
           pipe.passed = true;
           score++;
           difficulty = Math.min(5, 1 + Math.floor(score / 10));
